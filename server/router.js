@@ -2,7 +2,6 @@ import express from "express";
 import addRoom from "./controllers/addRoom.js";
 import getAllRooms from "./controllers/getAllRooms.js";
 import bookRoom from "./controllers/bookRoom.js";
-import adminDashboard from "./controllers/adminDashboard.js";
 import bookedRooms from "./controllers/bookedRooms.js";
 import getRooms from './controllers/getRooms.js';
 
