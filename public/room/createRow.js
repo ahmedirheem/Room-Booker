@@ -25,5 +25,6 @@ const createRow = (room) => {
   thurStatus.textContent = room.days['thursday']
   const friStatus = newRow.insertCell()
   friStatus.textContent = room.days['friday']
+  
 }
 export default createRow;

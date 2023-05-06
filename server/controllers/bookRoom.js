@@ -1,23 +1,28 @@
 import Room from '../database/model/Room.js'
 
-const bookRoom = async (req, res) => {
-  try {
-    const { name, bookedDay } = req.body
-    const newRoom = await Room.create({ name, bookedDay })
-    console.log();
-    res.status(201).json({
-      error: false,
-      data: {
-        room: newRoom
+const bookRoom = (req, res, next) => {
+  const {roomId} = req.params;
+  const {day} = req.body
+  Room.updateOne({ _id: roomId }, { $set: { [`days.${day}`]: true } })
+
+    .then((data) =>{
+      if(data.acknowledged){
+        return Room.where()
+      }else {
+        next('error')
       }
+    }).then((data) => {
+      return data.filter(e => e.days[day] === false)
     })
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({
-      error: true,
-      message: 'Internal Server Error!'
+    .then((data) => {
+      res.json(data)
+    }).catch((error) => {
+      console.log(error);
+      res.status(500).json({
+        error: true,
+        message: 'Internal Server Error!'
+      })
     })
-  }
 }
 
 export default bookRoom;
