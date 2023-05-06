@@ -18,12 +18,10 @@ window.onload = () => {
   fetch('/booked')
     .then((res) => res.json())
     .then((data) => {
-      console.log(data.data.rooms);
       data.data.rooms.forEach((room) => {
         const daysObj = room.days;
         for (const day in daysObj) {
           if (daysObj[day]) {
-            console.log(day);
             createRow(room, day)
           }
         }

@@ -10,8 +10,8 @@ app.set('PORT', process.env.PORT || 3000)
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
+// app.use(express.static(path.join(path.dirname(new URL(import.meta.url).pathname), '..', 'public')));
 app.use(express.static('/Users/pc/Desktop/Code-Academy/Projects/Room-Booker/public'))
-// app.use(express.static('/Users/pc/Desktop/Code-Academy/Projects/Room-Booker/public/room'))
 app.use(router)
 
 connection()
